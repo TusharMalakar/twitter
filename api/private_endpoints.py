@@ -86,7 +86,7 @@ def comment_on_tweet():
 @user_api.route("/delete_my_tweet", methods=['DELETE'])
 def delete_my_tweet():
     """
-    http://127.0.0.1:5000/user/edit_my_tweet
+    http://127.0.0.1:5000/user/delete_my_tweet
     body = {
         "id" : "5da54850158ea70cdd95a209",              #JSON, required
         "owner" : "testuser1@myhunter.cuny.edu"  #JSON, required
