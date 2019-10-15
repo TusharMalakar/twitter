@@ -1,4 +1,4 @@
-# twitter - api by "TUSHAR Malakar"
+# twitter - api by "TUSHAR MALAKAR"
 - Twitter API Documentation:
 - Distributed System and Cloud Computing
 
