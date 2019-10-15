@@ -1,6 +1,16 @@
-flask
-Flask
-PyJWT
-pymongo
-dnspython == 1.16.0
-flask-cors ==3.0.8
+#  pip install -r requirements.txt
+
+#pip3 install --user flask==1.1.1
+flask==1.1.1
+
+#pip3 install --user
+flask-cors == 3.0.8
+
+#pip3 install --user
+PyJWT==1.7.1
+
+#pip3 install --user pymongo==3.9.0
+pymongo==3.9.0
+
+#pip3 install --user dnspython==1.16.0
+dnspython==1.16.0
