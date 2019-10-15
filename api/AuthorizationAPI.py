@@ -1,26 +1,36 @@
-"""
-    this api will distribute who should use which api
-"""
 import json
 from flask import Blueprint, request
 from services.database.DBConn import database
+from security.JWT.symmetric import session_cookie
 
 userDB = database.users
 auth_api = Blueprint('auth_api', __name__)
 
 
-@auth_api.route("/login")
+@auth_api.route("/login", methods=['GET'])
 def login():
     """Generated End-Point Sample
-    http://127.0.0.1:5000/auth/login?username=testuser1&password=password
+    http://127.0.0.1:5000/user/login?username=testuser1@myhunter.cuny.edu&password=password
     """
     username = request.args.get("username")
     password = request.args.get("password")
-    return json.dumps({'username': username, "password": password})
+
+    if not username:
+        return json.dumps({'error': "Username not provided.", 'success': False, 'code': 66})
+    if not password:
+        return json.dumps({'error': "Password not provided.", 'success': False, 'code': 67})
+
+    record = userDB.find_one({'username': username})
+    if record is None:
+        return json.dumps({'error': "User doesn't exist.", 'success': False, 'code': 1})
+    else:
+        actualPassword = record['password']
+        # print(password," = ", actualPassword)
+        if password == actualPassword:
+            authtoken = session_cookie(username).decode("utf-8")
+            return json.dumps({'success': True, 'token': authtoken})
+        else:
+            return json.dumps({'error': 'Invalid Password', 'code': 2})
 
 
-@auth_api.route("/convert", methods=['POST'])
-def end_point_converter():
-    username = request.args.get("username")
-    password = request.args.get("password")
-    return json.dumps({'username': username, "password": password})
+
