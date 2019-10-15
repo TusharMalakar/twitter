@@ -53,11 +53,7 @@ def comment_on_tweet():
         "comments" :  {
                         "commenter" : "testuser2@myhunter.cuny.edu",
                         "comment"   : "comments against tweet : 7"
-                      },
-        "lives"   :  {
-                        "commenter" : "testuser2@myhunter.cuny.edu",
-                        "live"   : "lived"
-            }
+                      }
     }
     """
     data = request.get_json()
