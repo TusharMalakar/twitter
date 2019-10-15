@@ -10,7 +10,7 @@ auth_api = Blueprint('auth_api', __name__)
 @auth_api.route("/login", methods=['GET'])
 def login():
     """Generated End-Point Sample
-    http://127.0.0.1:5000/user/login?username=testuser1@myhunter.cuny.edu&password=password
+    http://127.0.0.1:5000/auth/login?username=testuser1@myhunter.cuny.edu&password=password
     """
     username = request.args.get("username")
     password = request.args.get("password")
