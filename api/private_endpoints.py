@@ -16,7 +16,7 @@ def like_on_tweet():
        "id": "5da54850158ea70cdd95a209",
         "likes"   :  {
                         "liker" : "testuser2@myhunter.cuny.edu",
-                        "like"   : "lived"
+                        "like"   : "liked"
             }
     }
     """
@@ -49,7 +49,7 @@ def comment_on_tweet():
     """"
     http://127.0.0.1:5000/user/comment_on_tweet
     body = {
-       "id": "5da53be70c92978ace45b21a",
+       "id": "5da61dbed78b3b2b10a53582",
         "comments" :  {
                         "commenter" : "testuser2@myhunter.cuny.edu",
                         "comment"   : "comments against tweet : 7"
@@ -173,14 +173,10 @@ def create_tweet():
     http://127.0.0.1:5000/user/create_tweet
     # in the body "tweet" and "owner" are required
     body = {
-        'tweet' : "this is the tweet",
-        'owner' : "testuser1@myhunter.cuny.edu",
-        'comments' : [
-                      {
-                        'commenter' : "testuser2@myhunter.cuny.edu",
-                        'comment'   : "comments against tweet"
-                      }
-        ]
+        "tweet" : "this is the tweet",
+        "owner" : "testuser1@myhunter.cuny.edu"
+        "likes" : [],
+        "comments" : []
     }
     :return: True or False
     """
