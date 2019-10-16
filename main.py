@@ -1,4 +1,4 @@
-import os
+import platform, os
 from flask import Flask
 from flask_cors import CORS
 from services.database.DBConn import database
@@ -31,5 +31,8 @@ def welcome_page():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, threaded=True, debug=True)
+    if platform.system() == 'Linux':
+        port = int(os.environ.get("PORT", 5000))
+        app.run(host="0.0.0.0", port=port, threaded=True, debug=True)
+    else:
+        app.run(host="127.0.0.1", port=5000, threaded=True, debug=True)
