@@ -59,7 +59,7 @@ Private Endpoints: To use these services user needs to add “session token” w
 2. Set the PROJECT_ID environment variable to your GCP project ID.
     - export PROJECT_ID=[PROJECT_ID]
 3. build the container image of this application and tag it for uploading
-    - docker build -t gcr.io/${PROJECT_ID}/twitter:v1 .
+    - docker build -t gcr.io/<PROJECT_ID>/twitter:v1 .
 4. verify that the build 
     - docker images
     
@@ -67,11 +67,11 @@ Private Endpoints: To use these services user needs to add “session token” w
 5. configure Docker command-line tool to authenticate to Container Registry
     - gcloud auth configure-docker
 6. upload the image to your Container Registry using Docker cli
-    - docker push gcr.io/${PROJECT_ID}/twitter:v1
+    - docker push gcr.io/<PROJECT_ID>/twitter:v1
 
 # Create cluster to run the container image. e.g. cluster has VM 
 7. Set your project ID
-    - gcloud config set project $PROJECT_ID
+    - gcloud config set project <PROJECT_ID>
 8. Set your Compute Engine zone
     - gcloud config set compute/zone [COMPUTE_ENGINE_ZONE]
 9. create a two-node cluster named twitter-cluster
@@ -81,7 +81,7 @@ Private Endpoints: To use these services user needs to add “session token” w
 
 # Deploy application, Kubernetes represents applications as Pods
 11. Run the following command to deploy twitter application
-    - kubectl create deployment hello-web --image=gcr.io/${PROJECT_ID}/twitter:v1
+    - kubectl create deployment hello-web --image=gcr.io/<PROJECT_ID>/twitter:v1
 12. see the Pod created by the Deployment
     - kubectl get pods
 
