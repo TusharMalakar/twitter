@@ -53,3 +53,46 @@ Private Endpoints: To use these services user needs to add “session token” w
 
    Please visit “https://github.com/TusharMalakar/twitter-api” to see the  code design.
 
+# DEPLOY to KUBERNETES : https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
+1. install kubectl
+   - gcloud components install kubectl
+2. Set the PROJECT_ID environment variable to your GCP project ID.
+    - export PROJECT_ID=[PROJECT_ID]
+3. build the container image of this application and tag it for uploading
+    - docker build -t gcr.io/${PROJECT_ID}/twitter:v1 .
+4. verify that the build 
+    - docker images
+    
+# upload the images
+5. configure Docker command-line tool to authenticate to Container Registry
+    - gcloud auth configure-docker
+6. upload the image to your Container Registry using Docker cli
+    - docker push gcr.io/${PROJECT_ID}/twitter:v1
+
+# Create cluster to run the container image. e.g. cluster has VM 
+7. Set your project ID
+    - gcloud config set project $PROJECT_ID
+8. Set your Compute Engine zone
+    - gcloud config set compute/zone [COMPUTE_ENGINE_ZONE]
+9. create a two-node cluster named twitter-cluster
+    - gcloud container clusters create twitter-cluster --num-nodes=2
+10. config the create clusters, it takes few minuites 
+    - gcloud compute instances list
+
+# Deploy application, Kubernetes represents applications as Pods
+11. Run the following command to deploy twitter application
+    - kubectl create deployment hello-web --image=gcr.io/${PROJECT_ID}/twitter:v1
+12. see the Pod created by the Deployment
+    - kubectl get pods
+
+# Expose your application to the Internet
+13. Expose external IP address to access the app
+    - kubectl expose deployment twitter --type=LoadBalancer --port 80 --target-port 8080
+14. find your extarnal adn cluster IP address
+    - kubectl get service
+    
+# Scale up your application : add more replicas to your application's
+15. add two additional replicas to your Deployment (for a total of three)
+    - kubectl scale deployment twitter --replicas=3
+16. config the replicas running on your cluster
+    - kubectl get deployment twitter
