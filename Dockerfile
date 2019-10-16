@@ -39,18 +39,8 @@ CMD ["main.py"]
 #To stop this container
 # exit()
 
-
 #see all the images
 #docker images
-
-#run a CONTAINER from the Image (LOCALLY)
-#docker run -it twitter
-
-#run a CONTAINER from the Image (PUBLICLY)
-#docker run -it -d -p 5999: 5000 twitter
-
-#How many container is running
-#docker ps
 
 #stop a container
 #docker stop <container-ID>
@@ -60,20 +50,6 @@ CMD ["main.py"]
 
 # force delete an images
 # docker rmi -f <images-id>
-
-####################  Whenever we run a IMAGE, It generate a NEW Container #########################
-
-#$ docker images                     // To view install images
-#$ docker rmi <IMAGE_NAME>           // To remove an installed image
-#
-#$ docker ps -a                      // To view all docker containers
-#$ docker stop <CONTAINER_NAME>      // To stop a docker container
-#$ docker rm <CONTAINER_NAME>        // To remove a docker container
-#
-#$ docker exec -it <CONTAINER_NAME> bash    // Execute into container and run bash
-
-##Reload the systemctl daemon
-#sudo systemctl daemon-reload
 
 ##restart docker
 #sudo service docker start

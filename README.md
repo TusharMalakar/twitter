@@ -96,3 +96,20 @@ Private Endpoints: To use these services user needs to add “session token” w
     - kubectl scale deployment twitter --replicas=3
 16. config the replicas running on your cluster
     - kubectl get deployment twitter
+
+# pesonal note: my project_id is "kubernete0"
+1. created "snow-cluster2" manually in the googel kubernetes with 3 nodes
+2. took to the URI from the "snow-cluster2" to connect through terminal
+3. docker build -t gcr.io/kubernete0/snow-app:v2 .
+4. docker images
+5. docker run -it -d -p 5000:5000 gcr.io/kubernete0/snow-app:v2
+6. gcloud auth configure-docker
+7. docker push gcr.io/kubernete0/snow-app:v2
+8. gcloud config set project kubernete0
+9. gcloud config set compute/zone [COMPUTE_ENGINE_ZONE]
+10. gcloud compute instances list
+11. kubectl create deployment snow-web2 --image=gcr.io/kubernete0/snow-app:v2
+12. kubectl get pods
+13. kubectl expose deployment snow-web2 --type=LoadBalancer --port 80 --target-port 5000
+14. kubectl get service
+15. curl http://35.224.251.209/auth/login?username=testuser1@myhunter.cuny.edu&password=password
