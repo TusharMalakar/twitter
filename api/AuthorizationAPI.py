@@ -7,6 +7,32 @@ userDB = database.users
 auth_api = Blueprint('auth_api', __name__)
 
 
+@auth_api.route("/create_user", methods=['POST'])
+def create_user():
+    """Generated End-Point Sample
+    http://127.0.0.1:5000/
+    body = {
+         "username" : "testuser3@myhunter.cuny.edu",
+        "password" : "password"
+    }
+    """
+    content = request.get_json(force=True)
+    if not content['username']:
+        return json.dumps({'error': "username parameter was not provided.", 'code': 1})
+    if not content['password']:
+        return json.dumps({'error': "Password parameter was not provided.", 'code': 2})
+    if len(content['password']) < 6 or len(content['password']) > 52:
+        return json.dumps(
+            {'error': "Password must be at least 6 characters and less than 52 characters long.", 'code': 3})
+    record = userDB.find_one({'username': content['username']})
+    if record is None:
+        result = userDB.insert_one(content)
+        return json.dumps({"success": True, 'message': 'you can log-in now, using usename and password'})
+    else:
+        return json.dumps({"success": False, 'error': 'User already exist.'})
+
+
+
 @auth_api.route("/login", methods=['GET'])
 def login():
     """Generated End-Point Sample

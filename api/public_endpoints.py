@@ -12,7 +12,7 @@ public_api = Blueprint('public_api', __name__)
 @public_api.route("/all_tweet", methods=['GET'])
 def get_all_tweet():
     """"
-    http://127.0.0.1:5000/user/all_tweet
+    http://127.0.0.1:5000/public/all_tweet
 
     :returns : [
                 {
