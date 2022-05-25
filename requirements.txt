@@ -7,7 +7,7 @@ flask==1.1.1
 flask-cors == 3.0.8
 
 #pip3 install --user
-PyJWT==1.7.1
+PyJWT==2.4.0
 
 #pip3 install --user pymongo==3.9.0
 pymongo==3.9.0
